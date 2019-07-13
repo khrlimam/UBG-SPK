@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rekomendasi Buku</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}">
+    <style>
+        body {
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">Rekomendasi Buku - SAW</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{{ url_for('base.calculate') }}">
+                        <h4 class="card-title">
+                            Bobot Rating
+                        </h4>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Bobot (%)</label>
+                            <input type="number" class="form-control"
+                                   placeholder="Contoh: 50" name="rate-weight">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="max-rate" class="form-check-input">
+                            <label class="form-check-label">Centang jika ingin rekomendasi rating
+                                tertinggi</label>
+                        </div>
+                        <hr>
+                        <h4 class="card-title">
+                            Bobot Tahun
+                        </h4>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Bobot (%)</label>
+                            <input type="number" class="form-control"
+                                   placeholder="Contoh: 50" name="year-weight">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="max-year">
+                            <label class="form-check-label">Centang jika ingin rekomendasi tahun
+                                terakhir</label>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-outline-secondary">Cek rekomendasi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

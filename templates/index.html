@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Table buku {{ hasil or '' }}</h3>
+                <p class="text-muted">Dibawah adalah daftar 100 buku dari 10000 buku yang ada</p>
+            </div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Avg Rating</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for _, book in books.iterrows() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ book['title'] }}</td>
+                        <td><i class="text-warning fa fa-star"></i> {{ book['average_rating'] }}</td>
+                        <td>{{ book['original_publication_year'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
